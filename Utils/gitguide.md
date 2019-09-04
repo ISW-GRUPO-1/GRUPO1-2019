@@ -31,6 +31,7 @@ git add .
 git commit -m "aquí poner SIEMPRE un comentario de los cambios que hiciste"
 ```
 Recorda que el comentario siempre debe ser descriptivo por si en algún momento se desea volver a este punto sea fácil de encontrar! 
+
 6) Subí tus cambios locales al repositorio usando el comando:
 ``` 
 git push origin <nombreDeTuRama>
