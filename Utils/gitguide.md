@@ -1,12 +1,12 @@
-#Introducción
+# Introducción
 
 Esta es una guía con los comandos básicos para el uso de git desde la terminal 
 
-##¿Qué necesitas antes de arrancar? 
+## ¿Qué necesitas antes de arrancar? 
 
 Solo tener git instalado y abrir la terminal 
 
-##Pasos para hacer tu aporte a este repositorio
+## Pasos para hacer tu aporte a este repositorio
 
 1) Clona el repositorio de forma local. 
 Para esto dirigite a la carpeta donde queres guardar el repositorio y ejecuta: 
@@ -42,9 +42,9 @@ git push origin <nombreDeTuRama>
 git checkout master
 ```
 
-*Repetir los pasos del 3 al 6 hasta agregar todos los cambios que queremos proponer 
+* Repetir los pasos del 3 al 6 hasta agregar todos los cambios que queremos proponer 
 
-*Recordá siempre hacer un pull de las cosas nuevas que hay en el repositorio remoto con los comandos
+* Recordá siempre hacer un pull de las cosas nuevas que hay en el repositorio remoto con los comandos
 ``` 
 git pull
 
