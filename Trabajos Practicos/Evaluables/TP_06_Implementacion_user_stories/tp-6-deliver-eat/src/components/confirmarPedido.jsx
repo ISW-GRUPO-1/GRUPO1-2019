@@ -102,9 +102,6 @@ const ConfirmarPedido = ({
                 direction="column"
                 alignItems="center"
               >
-                {
-                  // TODO: PASAR A TEXTFIELD CON FORMATO mm/yyyy
-                }
                 <KeyboardDatePicker
                   disableToolbar
                   variant="inline"
