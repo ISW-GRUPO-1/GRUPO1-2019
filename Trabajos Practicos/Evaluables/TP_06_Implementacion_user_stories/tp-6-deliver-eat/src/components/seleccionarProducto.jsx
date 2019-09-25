@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Modal from '@material-ui/core/Modal';
+import PropTypes from 'prop-types';
+import ModalMap from './modalMap';
+
+const getModalStyle = () => ({
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+});
 
 const useStyles = makeStyles((theme) => ({
   dividers: {
@@ -27,13 +36,22 @@ const useStyles = makeStyles((theme) => ({
   img: {
     height: '35vh',
   },
+  paper: {
+    position: 'absolute',
+    width: '50vw',
+    height: '50vh',
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+  },
 }));
 
 const SeleccionarProductoYComercio = ({
   pedido, setProducto, showMessages, setShowMessages,
 }) => {
   const classes = useStyles();
-
+  const [modalStyle] = React.useState(getModalStyle);
+  const [openModal, setOpenModal] = useState(false);
   return (
     <Grid
       container
@@ -99,6 +117,19 @@ const SeleccionarProductoYComercio = ({
       }
       <Typography variant="h5" gutterBottom>Detalle del comercio</Typography>
       <Divider variant="middle" className={classes.dividers} />
+
+      <Button variant="outlined" component="span" onClick={() => setOpenModal(true)}>Seleccionar desde Mapa</Button>
+      <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+      >
+        <div style={modalStyle} className={classes.paper}>
+          <ModalMap pedido={pedido} setProducto={setProducto} />
+        </div>
+      </Modal>
+
       <TextField
         id="standard-name"
         className={classes.generalFields}
@@ -174,5 +205,11 @@ const SeleccionarProductoYComercio = ({
   );
 };
 
+SeleccionarProductoYComercio.propTypes = {
+  pedido: PropTypes.instanceOf(Object).isRequired,
+  setProducto: PropTypes.instanceOf(Object).isRequired,
+  showMessages: PropTypes.bool.isRequired,
+  setShowMessages: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default SeleccionarProductoYComercio;

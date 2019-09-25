@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -12,30 +11,29 @@ import ConfirmarPedido from './confirmarPedido';
 import ProcesarPedido from './procesarPedido';
 
 const PediLoQueSeaStepper = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(3);
   const [showMessages, setShowMessages] = useState(false);
   const [pedido, setPedido] = useState({
     producto: {
-      descripcion: 'Quiero una coca', // obligatorio
-      imagen: '', // opcional - jpg - max 5mb
+      descripcion: 'lo que sea',
+      imagen: '',
       imagenURLPreview: '',
     },
     direccionComercio: {
-      calle: 'Bv San Juan',
+      calle: 'san juan',
       numero: '757',
-      ciudad: 'Cordoba',
+      ciudad: 'cordoba',
       referencia: '',
-      loQueNecesitoParaMaps: null, // google maps integracion
     },
     direccionEntrega: {
-      calle: 'San Juan',
-      numero: '757 9noB',
-      ciudad: 'Córdoba',
+      calle: 'estrada',
+      numero: '49',
+      ciudad: 'Cordoba',
       referencia: '',
     },
     formaPago: {
       forma: 'Efectivo',
-      monto: 50,
+      monto: 500,
       numeroTarjeta: '',
       nombreTitular: '',
       fechaVencimiento: null, // (MM/AAAA)
@@ -123,13 +121,20 @@ const PediLoQueSeaStepper = () => {
           && pedido.direccionEntrega.numero
           && pedido.direccionEntrega.ciudad);
       case 2:
+        console.log(pedido.formaPago);
+        console.log(!!pedido.formaPago.numeroTarjeta);
+        console.log(!!pedido.formaPago.nombreTitular);
+        console.log(!!pedido.formaPago.fechaVencimiento);
+        console.log(!!pedido.formaPago.cvc);
+        console.log(/^4[0-9]{12}(?:[0-9]{3})?$/.test(pedido.formaPago.numeroTarjeta));
+        console.log(/^[0-9]{3}$/.test(pedido.formaPago.cvc));
         return pedido.formaPago.forma === 'Efectivo'
           ? pedido.formaPago.monto > 0
           : !!(pedido.formaPago.numeroTarjeta
             && pedido.formaPago.nombreTitular
             && pedido.formaPago.fechaVencimiento
             && pedido.formaPago.cvc
-            && /^3[47][0-9]{13}$/.test(pedido.formaPago.numeroTarjeta)
+            && /^4[0-9]{12}(?:[0-9]{3})?$/.test(pedido.formaPago.numeroTarjeta)
             && /^[0-9]{3}$/.test(pedido.formaPago.cvc));
       case 3:
         return pedido.fechaEntrega.esLoAntesPosible || (
@@ -151,15 +156,12 @@ const PediLoQueSeaStepper = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   const classes = useStyles();
   const steps = getSteps();
 
   return (
     <div className={classes.root}>
+      {}
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
@@ -170,9 +172,7 @@ const PediLoQueSeaStepper = () => {
       <div>
         {activeStep === steps.length ? (
           <div>
-            <ProcesarPedido />
-            <Typography className={classes.instructions}>All steps completed</Typography>
-            <Button onClick={handleReset}>Reset</Button>
+            <ProcesarPedido pedido={pedido} />
           </div>
         ) : (
           <div>

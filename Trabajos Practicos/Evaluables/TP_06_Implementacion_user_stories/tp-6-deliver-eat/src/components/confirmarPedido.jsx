@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DateFnsUtils from '@date-io/date-fns';
+import PropTypes from 'prop-types';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -256,6 +257,13 @@ const ConfirmarPedido = ({
       }
     </Grid>
   );
+};
+
+ConfirmarPedido.propTypes = {
+  pedido: PropTypes.instanceOf(Object).isRequired,
+  setEntrega: PropTypes.instanceOf(Object).isRequired,
+  showMessages: PropTypes.bool.isRequired,
+  setShowMessages: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ConfirmarPedido;

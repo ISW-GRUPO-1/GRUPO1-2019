@@ -9,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import PropTypes from 'prop-types';
 import ciudades from '../utils/cities';
 
 const useStyles = makeStyles((theme) => ({
@@ -132,6 +133,13 @@ const SeleccionarDireccionEntrega = (
       />
     </Grid>
   );
+};
+
+SeleccionarDireccionEntrega.propTypes = {
+  pedido: PropTypes.instanceOf(Object).isRequired,
+  setDireccionEntrega: PropTypes.instanceOf(Object).isRequired,
+  showMessages: PropTypes.bool.isRequired,
+  setShowMessages: PropTypes.instanceOf(Object).isRequired,
 };
 
 

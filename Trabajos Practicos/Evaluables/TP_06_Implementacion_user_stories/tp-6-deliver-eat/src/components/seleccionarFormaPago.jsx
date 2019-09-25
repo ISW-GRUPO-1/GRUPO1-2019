@@ -12,6 +12,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import DateFnsUtils from '@date-io/date-fns';
+import PropTypes from 'prop-types';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -84,7 +85,7 @@ const SeleccionarFormaPago = ({
               className={classes.formControl}
               error={showMessages && !pedido.formaPago.monto}
             >
-              <InputLabel htmlFor="adornment-amount">Monto *</InputLabel>
+              <InputLabel htmlFor="adornment-amount">Monto con el que vas a abonar *</InputLabel>
               <Input
                 id="adornment-amount"
                 value={pedido.formaPago.monto}
@@ -204,6 +205,14 @@ const SeleccionarFormaPago = ({
       }
     </Grid>
   );
+};
+
+
+SeleccionarFormaPago.propTypes = {
+  pedido: PropTypes.instanceOf(Object).isRequired,
+  setFormaPago: PropTypes.instanceOf(Object).isRequired,
+  showMessages: PropTypes.bool.isRequired,
+  setShowMessages: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default SeleccionarFormaPago;
