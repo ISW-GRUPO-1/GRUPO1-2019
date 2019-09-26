@@ -11,29 +11,29 @@ import ConfirmarPedido from './confirmarPedido';
 import ProcesarPedido from './procesarPedido';
 
 const PediLoQueSeaStepper = () => {
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(0);
   const [showMessages, setShowMessages] = useState(false);
   const [pedido, setPedido] = useState({
     producto: {
-      descripcion: 'lo que sea',
+      descripcion: '',
       imagen: '',
       imagenURLPreview: '',
     },
     direccionComercio: {
-      calle: 'san juan',
-      numero: '757',
-      ciudad: 'cordoba',
+      calle: '',
+      numero: '',
+      ciudad: '',
       referencia: '',
     },
     direccionEntrega: {
-      calle: 'estrada',
-      numero: '49',
-      ciudad: 'Cordoba',
+      calle: '',
+      numero: '',
+      ciudad: '',
       referencia: '',
     },
     formaPago: {
       forma: 'Efectivo',
-      monto: 500,
+      monto: 0,
       numeroTarjeta: '',
       nombreTitular: '',
       fechaVencimiento: null, // (MM/AAAA)
